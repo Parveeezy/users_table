@@ -1,11 +1,21 @@
 import * as React from 'react';
-import {GridColDef, GridRowsProp, GridToolbar} from '@mui/x-data-grid';
+import {GridColDef, GridRowModesModel, GridRowsProp, GridSlots, GridToolbar} from '@mui/x-data-grid';
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../../app/store.ts";
 import {UserGridTable} from "./components.ts";
+import {Link} from "react-router-dom";
 
 const columns: GridColDef[] = [
-    { field: 'name', headerName: 'Имя', width: 180, sortable: true, filterable: false },
+    {
+        field: 'name',
+        headerName: 'Имя',
+        width: 180,
+        sortable: true,
+        filterable: false,
+        renderCell: (params) => (
+            <Link to={`/edit-user/${params.id}`}>{params.value}</Link>
+        )
+    },
     {
         field: 'isArchive',
         headerName: 'В архиве',
@@ -22,12 +32,12 @@ const columns: GridColDef[] = [
         sortable: false,
         type: 'singleSelect',
         valueOptions: [
-            { value: 'cook', label: 'Повар' },
-            { value: 'waiter', label: 'Официант' },
-            { value: 'driver', label: 'Водитель' }
+            {value: 'cook', label: 'Повар'},
+            {value: 'waiter', label: 'Официант'},
+            {value: 'driver', label: 'Водитель'}
         ]
     },
-    { field: 'phone', headerName: 'Телефон', width: 170, filterable: false },
+    {field: 'phone', headerName: 'Телефон', width: 170, filterable: false},
     {
         field: 'birthday',
         headerName: 'Дата рождения',

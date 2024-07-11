@@ -1,5 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "../App.tsx";
+import {EditUser} from "../../features/components/Users/EditUser";
 
 export const router = createBrowserRouter([
     {
@@ -7,7 +8,7 @@ export const router = createBrowserRouter([
         element: <App/>,
     },
     {
-        path: "edit-user",
-        element: <></>,
+        path: "/edit-user/:id",
+        element: <EditUser/>,
     },
 ]);
